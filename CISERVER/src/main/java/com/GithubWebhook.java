@@ -72,10 +72,8 @@ public class GithubWebhook extends HttpServlet {
             int exitCode = 0;
             String buildErrorDetails = "";
             try {
-                // Start by running the compile phase.
-                runCompilePhase();
-                // Run test phase.
-                runTestPhase();
+                runBuildAtCommit(ownerLogin, repoName, commitSHA);
+
             } catch (Exception e) {
                 buildErrorDetails = e.getMessage();
                 exitCode = 1;
@@ -95,16 +93,67 @@ public class GithubWebhook extends HttpServlet {
         }
     }
 
+    /*
+     * Function for cloning the repo and checking out the based on the listed SHA. 
+     * 
+     */
+    protected void runBuildAtCommit(String owner, String repo, String commitSHA) throws Exception {
+        String token = System.getenv("GITHUB_TOKEN");
+        if (token == null) {
+            throw new Exception("GITHUB_TOKEN environment variable is not set.");
+         }
+        String cloneUrl = "https://" + token + "@github.com/" + owner + "/" + repo + ".git";
+        File workspace = new File("workspace_" + System.currentTimeMillis());
+        
+        workspace.mkdirs();
+        System.out.println(workspace.getAbsolutePath());
+        // Clone the repository into the workspace.
+        ProcessBuilder clonePB = new ProcessBuilder("git", "clone", cloneUrl, workspace.getAbsolutePath());
+        clonePB.redirectErrorStream(true);
+        Process cloneProcess = clonePB.start();
+        String cloneOutput = readProcessOutput(cloneProcess);
+        int cloneExit = cloneProcess.waitFor();
+        if (cloneExit != 0) {
+            throw new Exception("Git clone failed");
+        }
+        // Check out the specific commit.
+        ProcessBuilder checkoutPB = new ProcessBuilder("git", "checkout", commitSHA);
+        checkoutPB.directory(workspace);
+        checkoutPB.redirectErrorStream(true);
+        Process checkoutProcess = checkoutPB.start();
+        String checkoutOutput = readProcessOutput(checkoutProcess);
+        int checkoutExit = checkoutProcess.waitFor();
+        if (checkoutExit != 0) {
+            throw new Exception("Git checkout of commit " + commitSHA + " failed: " + checkoutOutput);
+        }
+        // Run the Maven build (compile and test) in the workspace.
+        runCompilePhase(workspace);
+        runTestPhase(workspace);
+
+
+    }
+
+    private String readProcessOutput(Process process) throws IOException {
+        StringBuilder output = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(
+                 new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
+            }
+        }
+        return output.toString();
+    }
     
     /**
      * Runs the Maven compile phase using ProcessBuilder.
      * Executes "mvn -B clean compile" in the current directory.
      * If the process fails, throws an Exception including the full log output.
      */
-    protected void runCompilePhase() throws Exception {
+    protected void runCompilePhase(File workspace) throws Exception {
         System.out.println("Starting compile phase...");
         ProcessBuilder pb = new ProcessBuilder("mvn", "-B", "clean", "compile");
-        pb.directory(new File("./")); // Directory containing your pom.xml
+        pb.directory(workspace); // Directory containing your pom.xml
         pb.redirectErrorStream(true);
 
         Process process = pb.start();
@@ -130,10 +179,10 @@ public class GithubWebhook extends HttpServlet {
      * Executes "mvn " in the current directory.
      * If the process fails, throws an Exception including the full log output.
      */
-    protected void runTestPhase() throws Exception {
+    protected void runTestPhase(File workspace) throws Exception {
         System.out.println("Starting test phase...");
         ProcessBuilder pb = new ProcessBuilder("mvn", "test");
-        pb.directory(new File("./")); 
+        pb.directory(workspace); 
         pb.redirectErrorStream(true);
 
         Process process = pb.start();

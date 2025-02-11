@@ -72,7 +72,8 @@ public class GithubWebhook extends HttpServlet {
             int exitCode = 0;
             String buildErrorDetails = "";
             try {
-  
+                // Start by running the compile phase.
+                runCompilePhase();
                 // Run test phase.
                 runTestPhase();
             } catch (Exception e) {
@@ -94,12 +95,42 @@ public class GithubWebhook extends HttpServlet {
         }
     }
 
+    
+    /**
+     * Runs the Maven compile phase using ProcessBuilder.
+     * Executes "mvn -B clean compile" in the current directory.
+     * If the process fails, throws an Exception including the full log output.
+     */
+    protected void runCompilePhase() throws Exception {
+        System.out.println("Starting compile phase...");
+        ProcessBuilder pb = new ProcessBuilder("mvn", "-B", "clean", "compile");
+        pb.directory(new File("./")); // Directory containing your pom.xml
+        pb.redirectErrorStream(true);
+
+        Process process = pb.start();
+        StringBuilder compileOutput = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                compileOutput.append(line).append("\n");
+            }
+        }
+        int exitCode = process.waitFor();
+        System.out.println("Compile phase exit code: " + exitCode);
+        System.out.println("Compile output:\n" + compileOutput.toString());
+        if (exitCode != 0) {
+            throw new Exception("Compilation failed with exit code " + exitCode + "\n" + compileOutput.toString());
+        }
+    }
+
+
     /**
      * Runs the Maven test phase using ProcessBuilder.
      * Executes "mvn " in the current directory.
      * If the process fails, throws an Exception including the full log output.
      */
-    private void runTestPhase() throws Exception {
+    protected void runTestPhase() throws Exception {
         System.out.println("Starting test phase...");
         ProcessBuilder pb = new ProcessBuilder("mvn", "test");
         pb.directory(new File("./")); 
@@ -122,3 +153,5 @@ public class GithubWebhook extends HttpServlet {
         }
     }
 }
+
+

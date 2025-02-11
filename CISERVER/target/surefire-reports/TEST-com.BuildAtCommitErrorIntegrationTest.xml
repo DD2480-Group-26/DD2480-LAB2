@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.1" name="com.TestGithubWebhookIntegrationTest" time="0.971" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.1" name="com.BuildAtCommitErrorIntegrationTest" time="0.251" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -7,7 +7,6 @@
     <property name="java.vm.vendor" value="Ubuntu"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://ubuntu.com/"/>
-    <property name="user.timezone" value="Europe/Stockholm"/>
     <property name="os.name" value="Linux"/>
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
@@ -28,7 +27,6 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="surefire.real.class.path" value="/mnt/c/Users/loveg/Desktop/DD2480-LAB2/CISERVER/target/surefire/surefirebooter-20250211205106454_3.jar"/>
-    <property name="org.eclipse.jetty.LEVEL" value="DEBUG"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.6+7-Ubuntu-122.04.1"/>
     <property name="user.name" value="lovego"/>
@@ -40,7 +38,6 @@
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
     <property name="localRepository" value="/home/lovego/.m2/repository"/>
     <property name="java.vendor.url.bug" value="https://bugs.launchpad.net/ubuntu/+source/openjdk-21"/>
-    <property name="jetty.git.hash" value="bedff458c4dd1a716d59e17b8cb0d2042eeab291"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="java.version" value="21.0.6"/>
     <property name="user.dir" value="/mnt/c/Users/loveg/Desktop/DD2480-LAB2/CISERVER"/>
@@ -55,69 +52,6 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testDoPostIntegrationCompileFailure" classname="com.TestGithubWebhookIntegrationTest" time="0.932">
-    <system-out><![CDATA[Server started on port: 40755
-Owner Login: test-user
-Repository: test-repo
-Commit SHA (after): abc123
-Branch: refs/heads/main
-Simulated runBuildAtCommit for commit abc123
-Simulated compile phase failure.
-Compile failure test response code: 500
-Compile failure test response body: Build failed.
-]]></system-out>
-    <system-err><![CDATA[[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.16; built: 2023-08-25T19:43:30.438Z; git: bedff458c4dd1a716d59e17b8cb0d2042eeab291; jvm 21.0.6+7-Ubuntu-122.04.1
-[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
-[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@544d57e{/,null,AVAILABLE}
-[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@1c852c0f{HTTP/1.1, (http/1.1)}{0.0.0.0:40755}
-[main] INFO org.eclipse.jetty.server.Server - Started Server@266374ef{STARTING}[11.0.16,sto=0] @2088ms
-[main] INFO org.eclipse.jetty.server.Server - Stopped Server@266374ef{STOPPING}[11.0.16,sto=0]
-[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@1c852c0f{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
-[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@544d57e{/,null,STOPPED}
-]]></system-err>
-  </testcase>
-  <testcase name="testDoPostIntegrationTestFailure" classname="com.TestGithubWebhookIntegrationTest" time="0.016">
-    <system-out><![CDATA[Server started on port: 36677
-Owner Login: test-user
-Repository: test-repo
-Commit SHA (after): abc123
-Branch: refs/heads/main
-Simulated runBuildAtCommit for commit abc123
-Simulated compile phase success.
-Simulated test phase failure.
-Test failure test response code: 500
-Test failure test response body: Build failed.
-]]></system-out>
-    <system-err><![CDATA[[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.16; built: 2023-08-25T19:43:30.438Z; git: bedff458c4dd1a716d59e17b8cb0d2042eeab291; jvm 21.0.6+7-Ubuntu-122.04.1
-[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
-[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@3fc79729{/,null,AVAILABLE}
-[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@27508c5d{HTTP/1.1, (http/1.1)}{0.0.0.0:36677}
-[main] INFO org.eclipse.jetty.server.Server - Started Server@1e4d3ce5{STARTING}[11.0.16,sto=0] @3021ms
-[main] INFO org.eclipse.jetty.server.Server - Stopped Server@1e4d3ce5{STOPPING}[11.0.16,sto=0]
-[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@27508c5d{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
-[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@3fc79729{/,null,STOPPED}
-]]></system-err>
-  </testcase>
-  <testcase name="testDoPostIntegrationSuccess" classname="com.TestGithubWebhookIntegrationTest" time="0.02">
-    <system-out><![CDATA[Server started on port: 41597
-Owner Login: test-user
-Repository: test-repo
-Commit SHA (after): abc123
-Branch: refs/heads/main
-Simulated runBuildAtCommit for commit abc123
-Simulated compile phase success.
-Simulated test phase success.
-Success test response code: 200
-Success test response body: Build succeeded.
-]]></system-out>
-    <system-err><![CDATA[[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.16; built: 2023-08-25T19:43:30.438Z; git: bedff458c4dd1a716d59e17b8cb0d2042eeab291; jvm 21.0.6+7-Ubuntu-122.04.1
-[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
-[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@5b3f61ff{/,null,AVAILABLE}
-[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@127a7a2e{HTTP/1.1, (http/1.1)}{0.0.0.0:41597}
-[main] INFO org.eclipse.jetty.server.Server - Started Server@57c03d88{STARTING}[11.0.16,sto=0] @3038ms
-[main] INFO org.eclipse.jetty.server.Server - Stopped Server@57c03d88{STOPPING}[11.0.16,sto=0]
-[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@127a7a2e{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
-[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@5b3f61ff{/,null,STOPPED}
-]]></system-err>
-  </testcase>
+  <testcase name="testRunBuildAtCommitMavenFailure" classname="com.BuildAtCommitErrorIntegrationTest" time="0.161"/>
+  <testcase name="testRunBuildAtCommitCheckoutFailure" classname="com.BuildAtCommitErrorIntegrationTest" time="0.022"/>
 </testsuite>

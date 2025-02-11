@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.1" name="com.GithubWebhookTest" time="6.362" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.1" name="com.TestGithubWebhookIntegrationTest" time="0.911" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/mnt/c/Users/loveg/Desktop/DD2480-LAB2/CIServer/target/surefire/surefirebooter-20250211163800223_3.jar /mnt/c/Users/loveg/Desktop/DD2480-LAB2/CIServer/target/surefire 2025-02-11T16-38-00_121-jvmRun1 surefire-20250211163800223_1tmp surefire_0-20250211163800223_2tmp"/>
+    <property name="sun.java.command" value="/mnt/c/Users/loveg/Desktop/DD2480-LAB2/CIServer/target/surefire/surefirebooter-20250211174746272_3.jar /mnt/c/Users/loveg/Desktop/DD2480-LAB2/CIServer/target/surefire 2025-02-11T17-47-46_153-jvmRun1 surefire-20250211174746272_1tmp surefire_0-20250211174746272_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/mnt/c/Users/loveg/Desktop/DD2480-LAB2/CIServer/target/test-classes:/mnt/c/Users/loveg/Desktop/DD2480-LAB2/CIServer/target/classes:/home/lovego/.m2/repository/org/eclipse/jetty/jetty-server/11.0.16/jetty-server-11.0.16.jar:/home/lovego/.m2/repository/org/eclipse/jetty/toolchain/jetty-jakarta-servlet-api/5.0.2/jetty-jakarta-servlet-api-5.0.2.jar:/home/lovego/.m2/repository/org/eclipse/jetty/jetty-http/11.0.16/jetty-http-11.0.16.jar:/home/lovego/.m2/repository/org/eclipse/jetty/jetty-util/11.0.16/jetty-util-11.0.16.jar:/home/lovego/.m2/repository/org/eclipse/jetty/jetty-io/11.0.16/jetty-io-11.0.16.jar:/home/lovego/.m2/repository/org/slf4j/slf4j-api/2.0.5/slf4j-api-2.0.5.jar:/home/lovego/.m2/repository/org/eclipse/jetty/jetty-servlet/11.0.16/jetty-servlet-11.0.16.jar:/home/lovego/.m2/repository/org/eclipse/jetty/jetty-security/11.0.16/jetty-security-11.0.16.jar:/home/lovego/.m2/repository/org/eclipse/jetty/jetty-client/11.0.16/jetty-client-11.0.16.jar:/home/lovego/.m2/repository/org/eclipse/jetty/jetty-alpn-client/11.0.16/jetty-alpn-client-11.0.16.jar:/home/lovego/.m2/repository/org/mockito/mockito-core/5.15.2/mockito-core-5.15.2.jar:/home/lovego/.m2/repository/net/bytebuddy/byte-buddy/1.15.11/byte-buddy-1.15.11.jar:/home/lovego/.m2/repository/net/bytebuddy/byte-buddy-agent/1.15.11/byte-buddy-agent-1.15.11.jar:/home/lovego/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/lovego/.m2/repository/jakarta/servlet/jakarta.servlet-api/6.0.0/jakarta.servlet-api-6.0.0.jar:/home/lovego/.m2/repository/org/slf4j/slf4j-simple/2.0.9/slf4j-simple-2.0.9.jar:/home/lovego/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.11.0/junit-jupiter-api-5.11.0.jar:/home/lovego/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/lovego/.m2/repository/org/junit/platform/junit-platform-commons/1.11.0/junit-platform-commons-1.11.0.jar:/home/lovego/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/lovego/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.11.0/junit-jupiter-params-5.11.0.jar:/home/lovego/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.18.2/jackson-databind-2.18.2.jar:/home/lovego/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.18.2/jackson-annotations-2.18.2.jar:/home/lovego/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.18.2/jackson-core-2.18.2.jar:/home/lovego/.m2/repository/com/ngrok/ngrok-java/1.1.1/ngrok-java-1.1.1.jar:/home/lovego/.m2/repository/org/apache/maven/shared/maven-invoker/3.2.0/maven-invoker-3.2.0.jar:/home/lovego/.m2/repository/org/apache/maven/shared/maven-shared-utils/3.3.4/maven-shared-utils-3.3.4.jar:/home/lovego/.m2/repository/commons-io/commons-io/2.6/commons-io-2.6.jar:/home/lovego/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/mnt/c/Users/loveg/Desktop/DD2480-LAB2/CIServer/target/surefire/surefirebooter-20250211163800223_3.jar"/>
+    <property name="surefire.real.class.path" value="/mnt/c/Users/loveg/Desktop/DD2480-LAB2/CIServer/target/surefire/surefirebooter-20250211174746272_3.jar"/>
     <property name="org.eclipse.jetty.LEVEL" value="DEBUG"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.6+7-Ubuntu-122.04.1"/>
@@ -55,42 +55,66 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testDoPostWithValidPayload" classname="com.GithubWebhookTest" time="6.361">
-    <system-out><![CDATA[Owner Login: TestOwner
-Repository: TestRepo
-Commit SHA (after): commit123
+  <testcase name="testDoPostIntegrationCompileFailure" classname="com.TestGithubWebhookIntegrationTest" time="0.879">
+    <system-out><![CDATA[Server started on port: 43473
+Owner Login: test-user
+Repository: test-repo
+Commit SHA (after): abc123
 Branch: refs/heads/main
-Starting test phase...
-Test phase exit code: 0
-Test output:
-[INFO] Scanning for projects...
-[INFO] 
-[INFO] -----------------------< com.CIserver:CIserver >------------------------
-[INFO] Building CIserver 1.0-SNAPSHOT
-[INFO] --------------------------------[ jar ]---------------------------------
-[INFO] 
-[INFO] --- maven-clean-plugin:3.4.0:clean (default-clean) @ CIserver ---
-[INFO] Deleting /mnt/c/Users/loveg/Desktop/DD2480-LAB2/CIServer/target
-[INFO] 
-[INFO] --- maven-resources-plugin:3.3.1:resources (default-resources) @ CIserver ---
-[INFO] skip non existing resourceDirectory /mnt/c/Users/loveg/Desktop/DD2480-LAB2/CIServer/src/main/resources
-[INFO] 
-[INFO] --- maven-compiler-plugin:3.13.0:compile (default-compile) @ CIserver ---
-[INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 2 source files with javac [debug release 17] to target/classes
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  1.750 s
-[INFO] Finished at: 2025-02-11T16:38:08+01:00
-[INFO] ------------------------------------------------------------------------
-
+Simulated compile phase failure.
+Compile failure test response code: 500
+Compile failure test response body: Build failed.
 ]]></system-out>
-    <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
-WARNING: A Java agent has been loaded dynamically (/home/lovego/.m2/repository/net/bytebuddy/byte-buddy-agent/1.15.11/byte-buddy-agent-1.15.11.jar)
-WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
-WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
-WARNING: Dynamic loading of agents will be disallowed by default in a future release
+    <system-err><![CDATA[[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.16; built: 2023-08-25T19:43:30.438Z; git: bedff458c4dd1a716d59e17b8cb0d2042eeab291; jvm 21.0.6+7-Ubuntu-122.04.1
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@7c3fdb62{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@74f6c5d8{HTTP/1.1, (http/1.1)}{0.0.0.0:43473}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@43015c69{STARTING}[11.0.16,sto=0] @1650ms
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@43015c69{STOPPING}[11.0.16,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@74f6c5d8{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@7c3fdb62{/,null,STOPPED}
+]]></system-err>
+  </testcase>
+  <testcase name="testDoPostIntegrationTestFailure" classname="com.TestGithubWebhookIntegrationTest" time="0.014">
+    <system-out><![CDATA[Server started on port: 32821
+Owner Login: test-user
+Repository: test-repo
+Commit SHA (after): abc123
+Branch: refs/heads/main
+Simulated compile phase success.
+Simulated test phase failure.
+Test failure test response code: 500
+Test failure test response body: Build failed.
+]]></system-out>
+    <system-err><![CDATA[[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.16; built: 2023-08-25T19:43:30.438Z; git: bedff458c4dd1a716d59e17b8cb0d2042eeab291; jvm 21.0.6+7-Ubuntu-122.04.1
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@723e88f9{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@5f20155b{HTTP/1.1, (http/1.1)}{0.0.0.0:32821}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@3fce8fd9{STARTING}[11.0.16,sto=0] @2524ms
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@3fce8fd9{STOPPING}[11.0.16,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@5f20155b{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@723e88f9{/,null,STOPPED}
+]]></system-err>
+  </testcase>
+  <testcase name="testDoPostIntegrationSuccess" classname="com.TestGithubWebhookIntegrationTest" time="0.014">
+    <system-out><![CDATA[Server started on port: 42629
+Owner Login: test-user
+Repository: test-repo
+Commit SHA (after): abc123
+Branch: refs/heads/main
+Simulated compile phase success.
+Simulated test phase success.
+Success test response code: 200
+Success test response body: Build succeeded.
+]]></system-out>
+    <system-err><![CDATA[[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.16; built: 2023-08-25T19:43:30.438Z; git: bedff458c4dd1a716d59e17b8cb0d2042eeab291; jvm 21.0.6+7-Ubuntu-122.04.1
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@bb9e6dc{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@4fa1c212{HTTP/1.1, (http/1.1)}{0.0.0.0:42629}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@f627d13{STARTING}[11.0.16,sto=0] @2538ms
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@f627d13{STOPPING}[11.0.16,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@4fa1c212{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@bb9e6dc{/,null,STOPPED}
 ]]></system-err>
   </testcase>
 </testsuite>

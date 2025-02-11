@@ -1,2 +1,3 @@
 /mnt/c/Users/loveg/Desktop/DD2480-LAB2/CIServer/src/test/java/CIServerTest.java
-/mnt/c/Users/loveg/Desktop/DD2480-LAB2/CIServer/src/test/java/GithubWebhookTest.java
+/mnt/c/Users/loveg/Desktop/DD2480-LAB2/CIServer/src/test/java/TestGithubWebhook.java
+/mnt/c/Users/loveg/Desktop/DD2480-LAB2/CIServer/src/test/java/TestGithubWebhookIntegrationTest.java

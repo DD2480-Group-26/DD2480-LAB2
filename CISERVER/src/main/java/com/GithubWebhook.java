@@ -69,8 +69,16 @@ public class GithubWebhook extends HttpServlet {
                 e.printStackTrace();
             }
             
-
             int exitCode = 0;
+            String buildErrorDetails = "";
+            try {
+  
+                // Run test phase.
+                runTestPhase();
+            } catch (Exception e) {
+                buildErrorDetails = e.getMessage();
+                exitCode = 1;
+            }
 
             // Respond based on the build result
             if (exitCode == 0) {
@@ -83,6 +91,34 @@ public class GithubWebhook extends HttpServlet {
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().println("Error handling webhook: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Runs the Maven test phase using ProcessBuilder.
+     * Executes "mvn " in the current directory.
+     * If the process fails, throws an Exception including the full log output.
+     */
+    private void runTestPhase() throws Exception {
+        System.out.println("Starting test phase...");
+        ProcessBuilder pb = new ProcessBuilder("mvn", "test");
+        pb.directory(new File("./")); 
+        pb.redirectErrorStream(true);
+
+        Process process = pb.start();
+        StringBuilder testOutput = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                testOutput.append(line).append("\n");
+            }
+        }
+        int exitCode = process.waitFor();
+        System.out.println("Test phase exit code: " + exitCode);
+        System.out.println("Test output:\n" + testOutput.toString());
+        if (exitCode != 0) {
+            throw new Exception("Test phase failed with exit code " + exitCode + "\n" + testOutput.toString());
         }
     }
 }

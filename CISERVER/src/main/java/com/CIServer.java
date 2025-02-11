@@ -15,6 +15,8 @@ public class CIServer {
         ServletContextHandler handler = new ServletContextHandler(ServletContextHandler.SESSIONS);
         handler.setContextPath("/");
         server.setHandler(handler);
+        handler.addServlet(new ServletHolder(new GithubWebhook()), "/");
+
         return server;
     }
 

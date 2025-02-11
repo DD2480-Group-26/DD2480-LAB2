@@ -1,4 +1,4 @@
-package com;  // or your preferred test package
+package com;
 
 import com.CIServer;
 import org.eclipse.jetty.server.Server;
@@ -7,10 +7,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.util.stream.Collectors;
 
 public class CIServerTest {
 
@@ -36,15 +38,21 @@ public class CIServerTest {
     }
 
     @Test
-    public void testServerResponds()  throws Exception {
-        // Since no servlet is mapped for "/", the server will likely return a 404 (Not Found)
+    public void testDoGet() throws Exception {
+        // Since the GithubWebhook servlet is mapped to "/", we expect a 200 OK response.
         URI uri = new URI("http://localhost:" + port + "/");
         URL url = uri.toURL();
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
 
         int responseCode = connection.getResponseCode();
-        // Verify that the response code is 404.
-        assertEquals(404, responseCode, "Expected 404 response code");
+        // Verify that the response code is 200.
+        assertEquals(200, responseCode, "Expected 200 response code");
+
+        // Read the response body.
+        String responseBody = new BufferedReader(new InputStreamReader(connection.getInputStream()))
+            .lines().collect(Collectors.joining("\n"));
+        assertTrue(responseBody.contains("This servlet is up and running."), 
+                   "Response should contain the expected message.");
     }
 }

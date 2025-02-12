@@ -8,9 +8,18 @@ import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -21,6 +30,34 @@ public class BuildDetailServletTest {
     private HttpServletResponse response;
     private StringWriter responseWriter;
 
+
+  
+    // Variable to hold the original file content
+    private static String originalFileContent;
+    // The path to the persistent file.
+    private static final String FILE_PATH = "build_statuses.json";
+    @BeforeAll
+    public static void backupFile() throws IOException {
+        Path path = Paths.get(FILE_PATH);
+        if (Files.exists(path)) {
+            originalFileContent = Files.readString(path, StandardCharsets.UTF_8);
+        } else {
+            originalFileContent = null;
+        }
+    }
+
+    @AfterAll
+    public static void restoreFile() throws IOException {
+        Path path = Paths.get(FILE_PATH);
+        if (originalFileContent != null) {
+            // Restore the original content.
+            Files.writeString(path, originalFileContent, StandardCharsets.UTF_8);
+        } else {
+            // If the file did not originally exist, remove any file created during tests.
+            Files.deleteIfExists(path);
+        }
+    }
+    
     @BeforeEach
     public void setUp() throws Exception {
         servlet = new BuildDetailServlet();

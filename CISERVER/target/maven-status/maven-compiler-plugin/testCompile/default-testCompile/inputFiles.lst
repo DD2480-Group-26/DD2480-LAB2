@@ -1,5 +1,7 @@
-/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/src/test/java/BuildAtCommitErrorIntegrationTest.java
-/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/src/test/java/BuildListServletTest.java
-/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/src/test/java/CIServerTest.java
-/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/src/test/java/DefaultGitHubClientTest.java
-/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/src/test/java/GithubWebhookTestPhaseAndCompilePhaseTest.java
+/mnt/c/Users/loveg/desktop/DD2480-LAB2/CISERVER/src/test/java/BuildAtCommitErrorIntegrationTest.java
+/mnt/c/Users/loveg/desktop/DD2480-LAB2/CISERVER/src/test/java/BuildDetailServletTest.java
+/mnt/c/Users/loveg/desktop/DD2480-LAB2/CISERVER/src/test/java/BuildListServletTest.java
+/mnt/c/Users/loveg/desktop/DD2480-LAB2/CISERVER/src/test/java/BuildNotificationServletTest.java
+/mnt/c/Users/loveg/desktop/DD2480-LAB2/CISERVER/src/test/java/CIServerTest.java
+/mnt/c/Users/loveg/desktop/DD2480-LAB2/CISERVER/src/test/java/DefaultGitHubClientTest.java
+/mnt/c/Users/loveg/desktop/DD2480-LAB2/CISERVER/src/test/java/GithubWebhookTestPhaseAndCompilePhaseTest.java

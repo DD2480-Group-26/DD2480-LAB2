@@ -29,14 +29,14 @@ public class BuildAtCommitErrorIntegrationTest {
 
     // Declare the webhook as a class-level field.
     private GithubWebhook webhook;
-
+    private GitHubClient githubclient; 
     // Track workspace directories created during tests.
     private File workspace;
 
     @BeforeEach
     public void setup() {
        // Initialize the class-level webhook instance.
-       webhook = new GithubWebhook(processExecutor);
+       webhook = new GithubWebhook(processExecutor, githubclient);
     }
 
     @AfterEach

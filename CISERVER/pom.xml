@@ -90,6 +90,12 @@
     <!-- JUnit Jupiter API for tests -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <scope>test</scope>
     </dependency>
@@ -97,6 +103,20 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-params</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- OkHttp MockWebServer to simulate GitHub API -->
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>mockwebserver</artifactId>
+      <version>4.12.0</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- System Stubs for testing System.out and System.err -->
+    <dependency>
+      <groupId>uk.org.webcompere</groupId>
+      <artifactId>system-stubs-jupiter</artifactId>
+      <version>2.0.2</version>
       <scope>test</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
@@ -173,7 +193,7 @@
         <version>3.1.0</version>
         <configuration>
           <!-- Should be the full qualified names but from the packages. -->
-          <mainClass>com.ciserver.CIServer</mainClass>
+          <mainClass>com.CIServer</mainClass>
         </configuration>
       </plugin>
     </plugins>

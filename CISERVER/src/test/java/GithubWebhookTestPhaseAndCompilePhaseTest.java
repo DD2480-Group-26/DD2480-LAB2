@@ -31,14 +31,14 @@ public class GithubWebhookTestPhaseAndCompilePhaseTest {
 
     // Declare the webhook as a class-level field.
     private GithubWebhook webhook;
-
+    private GitHubClient githubclient; 
     // Store a reference to the workspace directory created in each test.
     private File workspace;
 
     @BeforeEach
     public void setup() {
         // Inject mocks into the webhook.
-        webhook = new GithubWebhook(processExecutor);
+        webhook = new GithubWebhook(processExecutor,githubclient );
     }
 
     @AfterEach

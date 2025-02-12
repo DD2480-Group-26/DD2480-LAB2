@@ -42,7 +42,7 @@ public class BuildStatusTest {
         assertEquals(details, status.getDetails());
     }
 
-    // Test the default constructor of the BuildStatus class to ensure that it does not throw any exceptions.
+    // Test the setters and getters of the BuildStatus class to ensure that the fields are updated correctly.
     @Test
     void settersAndGetters_ShouldUpdateFields() {
         BuildStatus status = new BuildStatus();
@@ -71,7 +71,7 @@ public class BuildStatusTest {
         assertEquals(timestamp, status.getTimestamp());
     }
 
-    // Test the default constructor of the BuildStatus class to ensure that it does not throw any exceptions.
+    // Test the default constructor of the BuildStatus class to ensure that it can handle null and empty values.
     @Test
     void handleNullAndEmptyValues() {
         BuildStatus status = new BuildStatus(null, null, null, false, null);

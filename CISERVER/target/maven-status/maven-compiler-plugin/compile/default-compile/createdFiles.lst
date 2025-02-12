@@ -1,2 +1,9 @@
+com/DefaultProcessExecutor.class
 com/CIServer.class
+com/FileBuildStatusStore$1.class
+com/GitHubClient.class
+com/BuildStatus.class
+com/ProcessResult.class
+com/ProcessExecutor.class
+com/FileBuildStatusStore.class
 com/GithubWebhook.class

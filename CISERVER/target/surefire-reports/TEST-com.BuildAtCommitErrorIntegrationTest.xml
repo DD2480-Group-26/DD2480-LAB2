@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.1" name="com.BuildAtCommitErrorIntegrationTest" time="0.431" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.1" name="com.BuildAtCommitErrorIntegrationTest" time="0.415" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="SE"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/23.0.2/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/target/surefire/surefirebooter-20250212230417603_3.jar /Users/robinwidjeback/project/DD2480-LAB2/CISERVER/target/surefire 2025-02-12T23-04-17_570-jvmRun1 surefire-20250212230417603_1tmp surefire_0-20250212230417603_2tmp"/>
+    <property name="sun.java.command" value="/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/target/surefire/surefirebooter-20250212233944779_3.jar /Users/robinwidjeback/project/DD2480-LAB2/CISERVER/target/surefire 2025-02-12T23-39-44_745-jvmRun1 surefire-20250212233944779_1tmp surefire_0-20250212233944779_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/target/test-classes:/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/target/classes:/Users/robinwidjeback/.m2/repository/org/eclipse/jetty/jetty-server/11.0.16/jetty-server-11.0.16.jar:/Users/robinwidjeback/.m2/repository/org/eclipse/jetty/toolchain/jetty-jakarta-servlet-api/5.0.2/jetty-jakarta-servlet-api-5.0.2.jar:/Users/robinwidjeback/.m2/repository/org/eclipse/jetty/jetty-http/11.0.16/jetty-http-11.0.16.jar:/Users/robinwidjeback/.m2/repository/org/eclipse/jetty/jetty-util/11.0.16/jetty-util-11.0.16.jar:/Users/robinwidjeback/.m2/repository/org/eclipse/jetty/jetty-io/11.0.16/jetty-io-11.0.16.jar:/Users/robinwidjeback/.m2/repository/org/slf4j/slf4j-api/2.0.5/slf4j-api-2.0.5.jar:/Users/robinwidjeback/.m2/repository/org/eclipse/jetty/jetty-servlet/11.0.16/jetty-servlet-11.0.16.jar:/Users/robinwidjeback/.m2/repository/org/eclipse/jetty/jetty-security/11.0.16/jetty-security-11.0.16.jar:/Users/robinwidjeback/.m2/repository/org/eclipse/jetty/jetty-client/11.0.16/jetty-client-11.0.16.jar:/Users/robinwidjeback/.m2/repository/org/eclipse/jetty/jetty-alpn-client/11.0.16/jetty-alpn-client-11.0.16.jar:/Users/robinwidjeback/.m2/repository/org/mockito/mockito-core/5.15.2/mockito-core-5.15.2.jar:/Users/robinwidjeback/.m2/repository/net/bytebuddy/byte-buddy/1.15.11/byte-buddy-1.15.11.jar:/Users/robinwidjeback/.m2/repository/net/bytebuddy/byte-buddy-agent/1.15.11/byte-buddy-agent-1.15.11.jar:/Users/robinwidjeback/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/robinwidjeback/.m2/repository/org/mockito/mockito-junit-jupiter/4.11.0/mockito-junit-jupiter-4.11.0.jar:/Users/robinwidjeback/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar:/Users/robinwidjeback/.m2/repository/jakarta/servlet/jakarta.servlet-api/6.0.0/jakarta.servlet-api-6.0.0.jar:/Users/robinwidjeback/.m2/repository/org/slf4j/slf4j-simple/2.0.9/slf4j-simple-2.0.9.jar:/Users/robinwidjeback/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.1/junit-jupiter-5.8.1.jar:/Users/robinwidjeback/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.11.0/junit-jupiter-engine-5.11.0.jar:/Users/robinwidjeback/.m2/repository/org/junit/platform/junit-platform-engine/1.11.0/junit-platform-engine-1.11.0.jar:/Users/robinwidjeback/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.11.0/junit-jupiter-api-5.11.0.jar:/Users/robinwidjeback/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/robinwidjeback/.m2/repository/org/junit/platform/junit-platform-commons/1.11.0/junit-platform-commons-1.11.0.jar:/Users/robinwidjeback/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/robinwidjeback/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.11.0/junit-jupiter-params-5.11.0.jar:/Users/robinwidjeback/.m2/repository/com/squareup/okhttp3/mockwebserver/4.12.0/mockwebserver-4.12.0.jar:/Users/robinwidjeback/.m2/repository/com/squareup/okhttp3/okhttp/4.12.0/okhttp-4.12.0.jar:/Users/robinwidjeback/.m2/repository/com/squareup/okio/okio/3.6.0/okio-3.6.0.jar:/Users/robinwidjeback/.m2/repository/com/squareup/okio/okio-jvm/3.6.0/okio-jvm-3.6.0.jar:/Users/robinwidjeback/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/robinwidjeback/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/robinwidjeback/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.21/kotlin-stdlib-jdk8-1.8.21.jar:/Users/robinwidjeback/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib/1.8.21/kotlin-stdlib-1.8.21.jar:/Users/robinwidjeback/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-common/1.8.21/kotlin-stdlib-common-1.8.21.jar:/Users/robinwidjeback/.m2/repository/org/jetbrains/annotations/13.0/annotations-13.0.jar:/Users/robinwidjeback/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.8.21/kotlin-stdlib-jdk7-1.8.21.jar:/Users/robinwidjeback/.m2/repository/uk/org/webcompere/system-stubs-jupiter/2.0.2/system-stubs-jupiter-2.0.2.jar:/Users/robinwidjeback/.m2/repository/uk/org/webcompere/system-stubs-core/2.0.2/system-stubs-core-2.0.2.jar:/Users/robinwidjeback/.m2/repository/org/mockito/mockito-inline/3.12.4/mockito-inline-3.12.4.jar:/Users/robinwidjeback/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.18.2/jackson-databind-2.18.2.jar:/Users/robinwidjeback/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.18.2/jackson-annotations-2.18.2.jar:/Users/robinwidjeback/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.18.2/jackson-core-2.18.2.jar:/Users/robinwidjeback/.m2/repository/com/ngrok/ngrok-java/1.1.1/ngrok-java-1.1.1.jar:/Users/robinwidjeback/.m2/repository/org/apache/maven/shared/maven-invoker/3.2.0/maven-invoker-3.2.0.jar:/Users/robinwidjeback/.m2/repository/org/apache/maven/shared/maven-shared-utils/3.3.4/maven-shared-utils-3.3.4.jar:/Users/robinwidjeback/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar:"/>
@@ -30,7 +30,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/target/surefire/surefirebooter-20250212230417603_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/target/surefire/surefirebooter-20250212233944779_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="23.0.2"/>
@@ -60,9 +60,9 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testRunBuildAtCommitCheckoutFailure" classname="com.BuildAtCommitErrorIntegrationTest" time="0.422">
-    <system-out><![CDATA[/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739397858576
-Deleted workspace./Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739397858576
+  <testcase name="testRunBuildAtCommitCheckoutFailure" classname="com.BuildAtCommitErrorIntegrationTest" time="0.409">
+    <system-out><![CDATA[/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739399985719
+Deleted workspace./Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739399985719
 ]]></system-out>
     <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
 WARNING: A Java agent has been loaded dynamically (/Users/robinwidjeback/.m2/repository/net/bytebuddy/byte-buddy-agent/1.15.11/byte-buddy-agent-1.15.11.jar)
@@ -72,7 +72,7 @@ WARNING: Dynamic loading of agents will be disallowed by default in a future rel
 ]]></system-err>
   </testcase>
   <testcase name="testRunBuildAtCommitSuccess" classname="com.BuildAtCommitErrorIntegrationTest" time="0.002">
-    <system-out><![CDATA[/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739397858582
+    <system-out><![CDATA[/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739399985724
 Starting compile phase...
 Compile phase exit code: 0
 Compile output:
@@ -81,11 +81,11 @@ Starting test phase...
 Test phase exit code: 0
 Test output:
 Success
-Deleted workspace./Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739397858582
+Deleted workspace./Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739399985724
 ]]></system-out>
   </testcase>
-  <testcase name="testRunBuildAtCommitTestFailure" classname="com.BuildAtCommitErrorIntegrationTest" time="0.003">
-    <system-out><![CDATA[/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739397858584
+  <testcase name="testRunBuildAtCommitTestFailure" classname="com.BuildAtCommitErrorIntegrationTest" time="0.002">
+    <system-out><![CDATA[/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739399985725
 Starting compile phase...
 Compile phase exit code: 0
 Compile output:
@@ -94,21 +94,21 @@ Starting test phase...
 Test phase exit code: 1
 Test output:
 Test failures
-Deleted workspace./Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739397858584
+Deleted workspace./Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739399985725
 ]]></system-out>
   </testcase>
-  <testcase name="testRunBuildAtCommitCompileFailure" classname="com.BuildAtCommitErrorIntegrationTest" time="0.002">
-    <system-out><![CDATA[/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739397858587
+  <testcase name="testRunBuildAtCommitCompileFailure" classname="com.BuildAtCommitErrorIntegrationTest" time="0.001">
+    <system-out><![CDATA[/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739399985727
 Starting compile phase...
 Compile phase exit code: 1
 Compile output:
 Compilation error
-Deleted workspace./Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739397858587
+Deleted workspace./Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739399985727
 ]]></system-out>
   </testcase>
-  <testcase name="testRunBuildAtCommitCloneFailure" classname="com.BuildAtCommitErrorIntegrationTest" time="0.002">
-    <system-out><![CDATA[/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739397858589
-Deleted workspace./Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739397858589
+  <testcase name="testRunBuildAtCommitCloneFailure" classname="com.BuildAtCommitErrorIntegrationTest" time="0.001">
+    <system-out><![CDATA[/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739399985729
+Deleted workspace./Users/robinwidjeback/project/DD2480-LAB2/CISERVER/workspace_1739399985729
 ]]></system-out>
   </testcase>
 </testsuite>

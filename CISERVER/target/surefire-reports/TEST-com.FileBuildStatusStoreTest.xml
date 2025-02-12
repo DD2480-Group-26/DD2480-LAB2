@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.1" name="com.CIServerTest" time="0.013" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.1" name="com.FileBuildStatusStoreTest" time="0.114" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -31,7 +31,6 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
     <property name="surefire.real.class.path" value="/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/target/surefire/surefirebooter-20250212233944779_3.jar"/>
-    <property name="org.eclipse.jetty.LEVEL" value="DEBUG"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="23.0.2"/>
@@ -45,7 +44,6 @@
     <property name="java.vendor.version" value="Homebrew"/>
     <property name="localRepository" value="/Users/robinwidjeback/.m2/repository"/>
     <property name="java.vendor.url.bug" value="https://github.com/Homebrew/homebrew-core/issues"/>
-    <property name="jetty.git.hash" value="bedff458c4dd1a716d59e17b8cb0d2042eeab291"/>
     <property name="java.io.tmpdir" value="/var/folders/jy/yc5sxnsx7qg76vdypt6ffmrc0000gn/T/"/>
     <property name="java.version" value="23.0.2"/>
     <property name="user.dir" value="/Users/robinwidjeback/project/DD2480-LAB2/CISERVER"/>
@@ -61,15 +59,8 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testDoGet" classname="com.CIServerTest" time="0.013">
-    <system-err><![CDATA[[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.16; built: 2023-08-25T19:43:30.438Z; git: bedff458c4dd1a716d59e17b8cb0d2042eeab291; jvm 23.0.2
-[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
-[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@63f9b562{/,null,AVAILABLE}
-[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@76bf1bb8{HTTP/1.1, (http/1.1)}{0.0.0.0:52681}
-[main] INFO org.eclipse.jetty.server.Server - Started Server@438c9aa7{STARTING}[11.0.16,sto=0] @1032ms
-[main] INFO org.eclipse.jetty.server.Server - Stopped Server@438c9aa7{STOPPING}[11.0.16,sto=0]
-[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@76bf1bb8{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
-[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@63f9b562{/,null,STOPPED}
-]]></system-err>
-  </testcase>
+  <testcase name="getStatusById_ShouldReturnCorrectStatus" classname="com.FileBuildStatusStoreTest" time="0.037"/>
+  <testcase name="addStatus_ShouldPersistToFileAndUpdateList" classname="com.FileBuildStatusStoreTest" time="0.014"/>
+  <testcase name="getStatuses_ShouldReturnAllEntries" classname="com.FileBuildStatusStoreTest" time="0.0"/>
+  <testcase name="concurrentAccess_ShouldBeThreadSafe" classname="com.FileBuildStatusStoreTest" time="0.001"/>
 </testsuite>

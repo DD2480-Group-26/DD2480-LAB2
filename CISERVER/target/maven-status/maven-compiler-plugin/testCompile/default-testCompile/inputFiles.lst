@@ -5,4 +5,5 @@
 /Users/robinwidjeback/project/DD2480-LAB2/CISERVER/src/test/java/BuildStatusTest.java
 /Users/robinwidjeback/project/DD2480-LAB2/CISERVER/src/test/java/CIServerTest.java
 /Users/robinwidjeback/project/DD2480-LAB2/CISERVER/src/test/java/DefaultGitHubClientTest.java
+/Users/robinwidjeback/project/DD2480-LAB2/CISERVER/src/test/java/FileBuildStatusStoreTest.java
 /Users/robinwidjeback/project/DD2480-LAB2/CISERVER/src/test/java/GithubWebhookTestPhaseAndCompilePhaseTest.java

@@ -1,5 +1,6 @@
 package com;
 
+import org.apache.commons.io.FileUtils;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -134,23 +135,33 @@ public class GithubWebhook extends HttpServlet {
         
         workspace.mkdirs();
         System.out.println(workspace.getAbsolutePath());
-        // Clone the repository into the workspace.
-        ProcessBuilder clonePB = new ProcessBuilder("git", "clone", cloneUrl, workspace.getAbsolutePath());
-        ProcessResult cloneResult = processExecutor.execute(clonePB);
-        if (cloneResult.getExitCode() != 0) {
-            throw new Exception("Git clone failed: " + cloneResult.getOutput());
-        }
+        try {
+            // Clone the repository into the workspace.
+            ProcessBuilder clonePB = new ProcessBuilder("git", "clone", cloneUrl, workspace.getAbsolutePath());
+            ProcessResult cloneResult = processExecutor.execute(clonePB);
+            if (cloneResult.getExitCode() != 0) {
+                throw new Exception("Git clone failed: " + cloneResult.getOutput());
+            }
 
-        // Check out the specific commit.
-        ProcessBuilder checkoutPB = new ProcessBuilder("git", "checkout", commitSHA);
-        checkoutPB.directory(workspace);
-        ProcessResult checkoutResult = processExecutor.execute(checkoutPB);
-        if (checkoutResult.getExitCode() != 0) {
-            throw new Exception("Git checkout of commit " + commitSHA + " failed: " + checkoutResult.getOutput());
+            // Check out the specific commit.
+            ProcessBuilder checkoutPB = new ProcessBuilder("git", "checkout", commitSHA);
+            checkoutPB.directory(workspace);
+            ProcessResult checkoutResult = processExecutor.execute(checkoutPB);
+            if (checkoutResult.getExitCode() != 0) {
+                throw new Exception("Git checkout of commit " + commitSHA + " failed: " + checkoutResult.getOutput());
+            }
+            // Run the Maven build (compile and test) in the workspace.
+            runCompilePhase(workspace);
+            runTestPhase(workspace);
+        } finally {
+            // delete the workspace (clone of the repository)
+            try{
+                FileUtils.deleteDirectory(workspace);
+                System.out.println("Deleted workspace." + workspace.getAbsolutePath());
+            } catch (IOException e) {
+                System.out.println("Failed to delete workspace: " + e.getMessage());
+            }
         }
-        // Run the Maven build (compile and test) in the workspace.
-        runCompilePhase(workspace);
-        runTestPhase(workspace);
 
 
     }

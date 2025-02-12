@@ -25,6 +25,9 @@ import com.fasterxml.jackson.databind.JsonNode;
  */
 public class GithubWebhook extends HttpServlet {
 
+    // GitHubClient implementation
+    private GitHubClient gitHubClient;
+
     /*
      * A sample response for the browser. 
      */
@@ -78,6 +81,19 @@ public class GithubWebhook extends HttpServlet {
                 buildErrorDetails = e.getMessage();
                 exitCode = 1;
             }
+
+            // Prepare build status information.
+            boolean success = exitCode == 0;
+            String statusString = success ? "success" : "failure";
+            String details = success ? "Build succeeded." : "Build and/or tests failed: " + buildErrorDetails;
+
+            // Create a BuildStatus object and save it.
+            BuildStatus buildStatus = new BuildStatus(repoName, commitSHA, branch, success, details);
+            FileBuildStatusStore.addStatus(buildStatus);
+
+            System.out.println("Posting to GitHub.");
+            gitHubClient.postStatus(ownerLogin, repoName, commitSHA, statusString);
+
 
             // Respond based on the build result
             if (exitCode == 0) {

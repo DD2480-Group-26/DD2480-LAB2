@@ -32,12 +32,13 @@ public class GithubWebhook extends HttpServlet {
 
     // Default constructor used in production
     public GithubWebhook() {
-        this(new DefaultProcessExecutor());
+        this(new DefaultProcessExecutor(), new DefaultGitHubClient());
     }
 
     // Constructor for injecting mocks in tests
-    public GithubWebhook(ProcessExecutor processExecutor) {
+    public GithubWebhook(ProcessExecutor processExecutor, GitHubClient gitHubClient) {
         this.processExecutor = processExecutor;
+        this.gitHubClient = gitHubClient;
     }
 
     /*

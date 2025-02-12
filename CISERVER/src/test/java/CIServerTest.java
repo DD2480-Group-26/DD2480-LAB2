@@ -14,6 +14,11 @@ import java.net.URI;
 import java.net.URL;
 import java.util.stream.Collectors;
 
+
+/*
+ *Code for testing the CIserver itself works as expected. 
+ * 
+ */
 public class CIServerTest {
 
     private Server server;

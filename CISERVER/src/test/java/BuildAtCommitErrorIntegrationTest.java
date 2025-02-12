@@ -1,116 +1,116 @@
 package com;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.apache.commons.io.FileUtils;
-import org.junit.jupiter.api.Test;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.stream.Collectors;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+/**
+ * Unit tests for runBuildAtCommit.
+ *
+ * Contract being tested:
+ * - The method should run the clone, checkout, compile, and test phases in sequence.
+ * - If any phase fails (clone, checkout, compile, or test), it should throw an exception with an appropriate message.
+ */
+@ExtendWith(MockitoExtension.class)
 public class BuildAtCommitErrorIntegrationTest {
 
-    /**
-     * Utility method to run a command in a given directory and return its output.
-     */
-    private String runCommand(File workingDir, String... command) throws Exception {
-        ProcessBuilder pb = new ProcessBuilder(command);
-        if (workingDir != null) {
-            pb.directory(workingDir);
-        }
-        pb.redirectErrorStream(true);
-        Process process = pb.start();
-        String output;
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
-            output = reader.lines().collect(Collectors.joining("\n"));
-        }
-        int exitCode = process.waitFor();
-        if (exitCode != 0) {
-            throw new Exception("Command " + String.join(" ", command) + " failed with exit code " + exitCode + "\n" + output);
-        }
-        return output;
+    @Mock
+    private ProcessExecutor processExecutor;
+
+    // Declare the webhook as a class-level field.
+    private GithubWebhook webhook;
+
+    // Track workspace directories created during tests.
+    private File workspace;
+
+    @BeforeEach
+    public void setup() {
+       // Initialize the class-level webhook instance.
+       webhook = new GithubWebhook(processExecutor);
     }
-    
-    /**
-     * Sets up a temporary local git repository with a minimal pom.xml.
-     * Returns the repository directory.
-     */
-    private File setupTemporaryRepository() throws Exception {
-        File repoDir = Files.createTempDirectory("testRepo").toFile();
-        // Initialize git repository.
-        runCommand(repoDir, "git", "init");
-        // Create a minimal pom.xml.
-        File pom = new File(repoDir, "pom.xml");
-        String minimalPom = "<project xmlns=\"http://maven.apache.org/POM/4.0.0\">"
-                          + "<modelVersion>4.0.0</modelVersion>"
-                          + "<groupId>com.example</groupId>"
-                          + "<artifactId>dummy-project</artifactId>"
-                          + "<version>1.0-SNAPSHOT</version>"
-                          + "</project>";
-        Files.write(pom.toPath(), minimalPom.getBytes(StandardCharsets.UTF_8));
-        // Add and commit.
-        runCommand(repoDir, "git", "add", "pom.xml");
-        runCommand(repoDir, "git", "commit", "-m", "Initial commit");
-        return repoDir;
+
+    @AfterEach
+    public void cleanup() {
+        // Clean up any workspace directory created.
+        if (workspace != null && workspace.exists()) {
+            try {
+                FileUtils.deleteDirectory(workspace);
+            } catch (IOException e) {
+                System.err.println("Failed to delete workspace: " + e.getMessage());
+            }
+        }
     }
-    
-    /**
-     * Test that an invalid commit SHA triggers a checkout failure.
-     */
+
+    @Test
+    public void testRunBuildAtCommitSuccess() throws Exception {
+        // Contract: When all phases succeed, runBuildAtCommit completes normally.
+        ProcessResult successResult = new ProcessResult(0, "Success");
+        // Expect four calls: clone, checkout, compile, test.
+        when(processExecutor.execute(any())).thenReturn(successResult, successResult, successResult, successResult);
+
+        // We call the method; note that runBuildAtCommit internally creates its own workspace.
+        // To capture that workspace for cleanup, we could modify runBuildAtCommit to store the workspace,
+        // or simply rely on the fact that our dummy directory name (e.g., "workspace_") is transient.
+        // For simplicity here, we assume runBuildAtCommit cleans up its workspace via its own mechanism (if any)
+        // or that the directory name is unique and we don’t worry about cleanup. If not, consider modifying the
+        // code to return the workspace for testing.
+        assertDoesNotThrow(() -> webhook.runBuildAtCommit("testOwner", "testRepo", "commit123"));
+    }
+
+    @Test
+    public void testRunBuildAtCommitCloneFailure() throws Exception {
+        // Contract: If the clone phase fails, an exception with "Git clone failed" is thrown.
+        ProcessResult failureResult = new ProcessResult(1, "Clone error");
+        when(processExecutor.execute(any())).thenReturn(failureResult);
+
+        Exception exception = assertThrows(Exception.class, () ->
+            webhook.runBuildAtCommit("testOwner", "testRepo", "commit123"));
+        assertTrue(exception.getMessage().contains("Git clone failed"));
+    }
+
     @Test
     public void testRunBuildAtCommitCheckoutFailure() throws Exception {
-        File repoDir = setupTemporaryRepository();
-        // Get a valid commit SHA for later use.
-        String validCommit = runCommand(repoDir, "git", "rev-parse", "HEAD").trim();
-        // Use an invalid commit SHA.
-        String invalidCommit = "invalidSHA";
-        
-        // Create an instance of GithubWebhook and invoke runBuildAtCommit via reflection.
-        GithubWebhook webhook = new GithubWebhook();
-        java.lang.reflect.Method method = GithubWebhook.class.getDeclaredMethod("runBuildAtCommit", String.class, String.class, String.class);
-        method.setAccessible(true);
-        
-        // For testing purposes, modify runBuildAtCommit so that it uses a file:// URL if the owner equals "local".
-        Exception exception = assertThrows(Exception.class, () -> {
-            method.invoke(webhook, "local", repoDir.getName(), invalidCommit);
-        });
-        
-        // Cleanup.
-        FileUtils.deleteDirectory(repoDir);
+        // Contract: If checkout fails, an exception with "Git checkout of commit" is thrown.
+        ProcessResult successResult = new ProcessResult(0, "Success");
+        ProcessResult failureResult = new ProcessResult(1, "Checkout error");
+        when(processExecutor.execute(any())).thenReturn(successResult, failureResult);
+
+        Exception exception = assertThrows(Exception.class, () ->
+            webhook.runBuildAtCommit("testOwner", "testRepo", "commit123"));
+        assertTrue(exception.getMessage().contains("Git checkout of commit"));
     }
-    
-    /**
-     * Test that Maven build failure (e.g. missing pom.xml) triggers an error.
-     */
+
     @Test
-    public void testRunBuildAtCommitMavenFailure() throws Exception {
-        // Setup repository.
-        File repoDir = setupTemporaryRepository();
-        // Get a valid commit SHA.
-        String commitSHA = runCommand(repoDir, "git", "rev-parse", "HEAD").trim();
-        
-        // Simulate a Maven failure by deleting the pom.xml after commit.
-        File pom = new File(repoDir, "pom.xml");
-        assertTrue(pom.exists());
-        assertTrue(pom.delete());
-        runCommand(repoDir, "git", "add", "pom.xml");
-        runCommand(repoDir, "git", "commit", "-m", "Remove pom.xml for testing");
-        
-        // Create an instance of GithubWebhook and invoke runBuildAtCommit.
-        GithubWebhook webhook = new GithubWebhook();
-        java.lang.reflect.Method method = GithubWebhook.class.getDeclaredMethod("runBuildAtCommit", String.class, String.class, String.class);
-        method.setAccessible(true);
-        
-        // For testing purposes, we assume the code uses a local file URL when owner equals "local".
-        Exception exception = assertThrows(Exception.class, () -> {
-            method.invoke(webhook, "local", repoDir.getName(), commitSHA);
-        });
-        
-        // Cleanup.
-        FileUtils.deleteDirectory(repoDir);
+    public void testRunBuildAtCommitCompileFailure() throws Exception {
+        // Contract: If compile fails, an exception with "Compilation failed" is thrown.
+        ProcessResult successResult = new ProcessResult(0, "Success");
+        ProcessResult compileFailure = new ProcessResult(1, "Compilation error");
+        when(processExecutor.execute(any())).thenReturn(successResult, successResult, compileFailure);
+
+        Exception exception = assertThrows(Exception.class, () ->
+            webhook.runBuildAtCommit("testOwner", "testRepo", "commit123"));
+        assertTrue(exception.getMessage().contains("Compilation failed"));
+    }
+
+    @Test
+    public void testRunBuildAtCommitTestFailure() throws Exception {
+        // Contract: If test phase fails, an exception with "Test phase failed" is thrown.
+        ProcessResult successResult = new ProcessResult(0, "Success");
+        ProcessResult testFailure = new ProcessResult(1, "Test failures");
+        when(processExecutor.execute(any())).thenReturn(successResult, successResult, successResult, testFailure);
+
+        Exception exception = assertThrows(Exception.class, () ->
+            webhook.runBuildAtCommit("testOwner", "testRepo", "commit123"));
+        assertTrue(exception.getMessage().contains("Test phase failed"));
     }
 }

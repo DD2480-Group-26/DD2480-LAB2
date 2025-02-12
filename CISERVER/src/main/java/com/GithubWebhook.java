@@ -25,8 +25,19 @@ import com.fasterxml.jackson.databind.JsonNode;
  */
 public class GithubWebhook extends HttpServlet {
 
-    // GitHubClient implementation
+    // Injected collaborators
+    private ProcessExecutor processExecutor;
     private GitHubClient gitHubClient;
+
+    // Default constructor used in production
+    public GithubWebhook() {
+        this(new DefaultProcessExecutor());
+    }
+
+    // Constructor for injecting mocks in tests
+    public GithubWebhook(ProcessExecutor processExecutor) {
+        this.processExecutor = processExecutor;
+    }
 
     /*
      * A sample response for the browser. 
@@ -125,22 +136,17 @@ public class GithubWebhook extends HttpServlet {
         System.out.println(workspace.getAbsolutePath());
         // Clone the repository into the workspace.
         ProcessBuilder clonePB = new ProcessBuilder("git", "clone", cloneUrl, workspace.getAbsolutePath());
-        clonePB.redirectErrorStream(true);
-        Process cloneProcess = clonePB.start();
-        String cloneOutput = readProcessOutput(cloneProcess);
-        int cloneExit = cloneProcess.waitFor();
-        if (cloneExit != 0) {
-            throw new Exception("Git clone failed");
+        ProcessResult cloneResult = processExecutor.execute(clonePB);
+        if (cloneResult.getExitCode() != 0) {
+            throw new Exception("Git clone failed: " + cloneResult.getOutput());
         }
+
         // Check out the specific commit.
         ProcessBuilder checkoutPB = new ProcessBuilder("git", "checkout", commitSHA);
         checkoutPB.directory(workspace);
-        checkoutPB.redirectErrorStream(true);
-        Process checkoutProcess = checkoutPB.start();
-        String checkoutOutput = readProcessOutput(checkoutProcess);
-        int checkoutExit = checkoutProcess.waitFor();
-        if (checkoutExit != 0) {
-            throw new Exception("Git checkout of commit " + commitSHA + " failed: " + checkoutOutput);
+        ProcessResult checkoutResult = processExecutor.execute(checkoutPB);
+        if (checkoutResult.getExitCode() != 0) {
+            throw new Exception("Git checkout of commit " + commitSHA + " failed: " + checkoutResult.getOutput());
         }
         // Run the Maven build (compile and test) in the workspace.
         runCompilePhase(workspace);
@@ -149,17 +155,6 @@ public class GithubWebhook extends HttpServlet {
 
     }
 
-    private String readProcessOutput(Process process) throws IOException {
-        StringBuilder output = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(
-                 new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line).append("\n");
-            }
-        }
-        return output.toString();
-    }
     
     /**
      * Runs the Maven compile phase using ProcessBuilder.
@@ -168,53 +163,28 @@ public class GithubWebhook extends HttpServlet {
      */
     protected void runCompilePhase(File workspace) throws Exception {
         System.out.println("Starting compile phase...");
-        ProcessBuilder pb = new ProcessBuilder("mvn", "-B", "clean", "compile");
-        pb.directory(workspace); // Directory containing your pom.xml
-        pb.redirectErrorStream(true);
-
-        Process process = pb.start();
-        StringBuilder compileOutput = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                compileOutput.append(line).append("\n");
-            }
-        }
-        int exitCode = process.waitFor();
-        System.out.println("Compile phase exit code: " + exitCode);
-        System.out.println("Compile output:\n" + compileOutput.toString());
-        if (exitCode != 0) {
-            throw new Exception("Compilation failed with exit code " + exitCode + "\n" + compileOutput.toString());
+        ProcessBuilder pb = new ProcessBuilder("mvn", "-B", "-f", "assignment2/CIserver/pom.xml", "clean", "compile");
+        pb.directory(workspace);
+        ProcessResult compileResult = processExecutor.execute(pb);
+        System.out.println("Compile phase exit code: " + compileResult.getExitCode());
+        System.out.println("Compile output:\n" + compileResult.getOutput());
+        if (compileResult.getExitCode() != 0) {
+            throw new Exception("Compilation failed with exit code " + compileResult.getExitCode() + "\n" + compileResult.getOutput());
         }
     }
 
-
     /**
-     * Runs the Maven test phase using ProcessBuilder.
-     * Executes "mvn " in the current directory.
-     * If the process fails, throws an Exception including the full log output.
+     * Runs the Maven test phase using the injected ProcessExecutor.
      */
     protected void runTestPhase(File workspace) throws Exception {
         System.out.println("Starting test phase...");
-        ProcessBuilder pb = new ProcessBuilder("mvn", "test");
-        pb.directory(workspace); 
-        pb.redirectErrorStream(true);
-
-        Process process = pb.start();
-        StringBuilder testOutput = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                testOutput.append(line).append("\n");
-            }
-        }
-        int exitCode = process.waitFor();
-        System.out.println("Test phase exit code: " + exitCode);
-        System.out.println("Test output:\n" + testOutput.toString());
-        if (exitCode != 0) {
-            throw new Exception("Test phase failed with exit code " + exitCode + "\n" + testOutput.toString());
+        ProcessBuilder pb = new ProcessBuilder("mvn", "-B", "-f", "assignment2/CIserver/pom.xml", "test");
+        pb.directory(workspace);
+        ProcessResult testResult = processExecutor.execute(pb);
+        System.out.println("Test phase exit code: " + testResult.getExitCode());
+        System.out.println("Test output:\n" + testResult.getOutput());
+        if (testResult.getExitCode() != 0) {
+            throw new Exception("Test phase failed with exit code " + testResult.getExitCode() + "\n" + testResult.getOutput());
         }
     }
 }

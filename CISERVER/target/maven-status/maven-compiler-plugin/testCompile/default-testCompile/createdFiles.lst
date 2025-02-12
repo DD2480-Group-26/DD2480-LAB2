@@ -1,4 +1,4 @@
 com/BuildAtCommitErrorIntegrationTest.class
 com/CIServerTest.class
-com/TestGithubWebhookIntegrationTest.class
-com/TestGithubWebhook.class
+com/GithubWebhookTestPhaseAndCompilePhaseTest.class
+com/GithubWebhookTestPhaseAndCompilePhaseTest$ProcessBuilderMatcher.class

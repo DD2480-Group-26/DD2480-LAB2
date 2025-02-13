@@ -15,10 +15,10 @@ public class CIServer {
         ServletContextHandler handler = new ServletContextHandler(ServletContextHandler.SESSIONS);
         handler.setContextPath("/");
         server.setHandler(handler);
-        handler.addServlet(new ServletHolder(new GithubWebhook(new DefaultProcessExecutor(), new DefaultGitHubClient())), "/");
+        handler.addServlet(new ServletHolder(new GithubWebhook()), "/");
         handler.addServlet(new ServletHolder(new BuildListServlet()), "/builds");
-        handler.addServlet(new ServletHolder(new BuildNotificationServlet ()), "/notifications");
-        handler.addServlet(new ServletHolder(new BuildDetailServlet  ()), "/details");
+        handler.addServlet(new ServletHolder(new BuildNotificationServlet ()), "/notification");
+        handler.addServlet(new ServletHolder(new BuildDetailServlet  ()), "/buildDetail");
 
 
         return server;

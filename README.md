@@ -98,23 +98,23 @@ Our group is still in the "In-use" state but we're nearing the "In-place" state.
 ## Contributions
 
 Robin Widjeback:
-    - Write README
-    - Build list servlet
-    - DefaultGithubClient
-    - Tests for BuildStatus and FileBuildStatusStore 
+- Write README
+- Build list servlet
+- DefaultGithubClient
+- Tests for BuildStatus and FileBuildStatusStore 
 
 Adam Lihagen
-    - Build detail servlet
-    - Build notification servlet
+- Build detail servlet
+- Build notification servlet
 
 Filip Hedman
-    - Setup repsone POST method to GitHub
-    - Add FileBuildStatusStore class
-    - Add build servlets
+- Setup repsone POST method to GitHub
+- Add FileBuildStatusStore class
+- Add build servlets
 
 Love Göransson 
-    - Created the initial code skeleton.
-    - Created the servlet for handling incoming Github webhooks.
-    - Creating the code for compiling the code from java. 
-    -Added code for compiling the code from java.
-    - Some bug fixes. 
+- Created the initial code skeleton.
+- Created the servlet for handling incoming Github webhooks.
+- Creating the code for compiling the code from java. 
+- Added code for compiling the code from java.
+- Some bug fixes. 

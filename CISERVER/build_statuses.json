@@ -1,0 +1,9 @@
+[ {
+  "id" : "4fea5e41-b7c7-4e84-892d-e44047fd7159",
+  "repoName" : "DD2480-LAB2",
+  "commitSHA" : "8db8d286cb62d22b27c08b2605d43a39d85dc8f7",
+  "branch" : "refs/heads/assessment",
+  "success" : true,
+  "details" : "Build succeeded.",
+  "timestamp" : 1739436682693
+} ]

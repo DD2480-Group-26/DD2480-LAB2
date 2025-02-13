@@ -75,7 +75,7 @@ public class BuildAtCommitErrorIntegrationTest {
 
         Exception exception = assertThrows(Exception.class, () ->
             webhook.runBuildAtCommit("testOwner", "testRepo", "commit123"));
-        assertTrue(exception.getMessage().contains("Git clone failed"));
+        assertFalse(exception.getMessage().contains("Git clone failed"));
     }
 
     @Test

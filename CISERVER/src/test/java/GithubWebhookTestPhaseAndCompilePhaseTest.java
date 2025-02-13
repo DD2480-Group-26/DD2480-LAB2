@@ -68,7 +68,7 @@ public class GithubWebhookTestPhaseAndCompilePhaseTest {
 
         // Verify the expected Maven compile command is used.
         verify(processExecutor).execute(argThat(new ProcessBuilderMatcher(new String[] {
-            "mvn", "-B", "-f", "assignment2/CIserver/pom.xml", "clean", "compile"
+            "mvn", "-B", "-f", "CISERVER/pom.xml", "clean", "compile"
         })));
     }
 
@@ -99,7 +99,7 @@ public class GithubWebhookTestPhaseAndCompilePhaseTest {
 
         // Verify that the expected Maven test command is used.
         verify(processExecutor).execute(argThat(new ProcessBuilderMatcher(new String[] {
-            "mvn", "-B", "-f", "assignment2/CIserver/pom.xml", "test"
+            "mvn", "-B", "-f", "CISERVER/pom.xml", "test"
         })));
     }
 

@@ -21,7 +21,7 @@ class BuildListServletTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        server = new Server(8080);
+        server = new Server(8070);
         ServletContextHandler context = new ServletContextHandler();
         context.setContextPath("/");
         context.addServlet(new ServletHolder(new BuildListServlet()), "/builds");

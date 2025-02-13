@@ -37,7 +37,7 @@ class BuildListServletTest {
     @Test
     void shouldReturnValidHtml() throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("http://localhost:8080/builds"))
+            .uri(URI.create("http://localhost:8070/builds"))
             .GET()
             .build();
 
